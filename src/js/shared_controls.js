@@ -585,9 +585,8 @@ $(".item").change(function () {
 });
 
 function smogonAnalysis(pokemonName) {
-	var generation = ["champions", "rb", "gs", "rs", "dp", "bw", "xy", "sm", "ss", "sv"][gen];
 	if (pokemonName === "Aegislash-Shield" || pokemonName === "Aegislash-Both") pokemonName = "Aegislash";
-	return "https://smogon.com/dex/" + generation + "/pokemon/" + pokemonName.toLowerCase() + "/";
+	return "https://mmoshowdown.com/dex/pokemon/" + pokemonName.toLowerCase() + "/";
 }
 
 // auto-update set details on select
