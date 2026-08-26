@@ -181,6 +181,7 @@ const BW = DPP.concat([
   'Zen Mode',
   'Sharpness',
   'Competitive',
+  'Neutralizing Gas',
 ]);
 
 const XY = BW.concat([
@@ -190,6 +191,7 @@ const XY = BW.concat([
   'Bulletproof',
   'Cheek Pouch',
   'Competitive',
+  'Neutralizing Gas',
   'Dark Aura',
   'Delta Stream',
   'Desolate Land',
@@ -368,6 +370,7 @@ const CHAMPIONS = [
   'Color Change',
   'Comatose',
   'Competitive',
+  'Neutralizing Gas',
   'Compound Eyes',
   'Contrary',
   'Corrosion',

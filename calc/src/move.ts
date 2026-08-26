@@ -105,7 +105,9 @@ export class Move implements State.Move {
           } else {
             this.hits = (options.ability === 'Skill Link')
               ? data.multihit[1]
-              : data.multihit[0] + 1;
+              : (options.item === 'Loaded Dice')
+                ? data.multihit[1] - 1
+                : data.multihit[0] + 1;
           }
         }
       }

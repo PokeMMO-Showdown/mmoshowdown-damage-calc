@@ -657,14 +657,14 @@ export function calculateBPModsBWXY(
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Analytic') && turnOrder !== 'first') {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (
     attacker.hasAbility('Sand Force') &&
     field.hasWeather('Sand') &&
     move.hasType('Rock', 'Ground', 'Steel')
   ) {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;
   } else if (
@@ -675,6 +675,10 @@ export function calculateBPModsBWXY(
     desc.attackerAbility = attacker.ability;
   }
 
+  if (attacker.hasItem('Punching Glove') && move.flags.punch) {
+    bpMods.push(4506);
+    desc.attackerItem = attacker.item;
+  }
   if (defender.hasAbility('Heatproof') && move.hasType('Fire')) {
     bpMods.push(2048);
     desc.defenderAbility = defender.ability;
@@ -722,7 +726,7 @@ export function calculateBPModsBWXY(
     bpMods.push(4915);
     desc.attackerItem = attacker.item;
   } else if (attacker.hasItem(`${move.type} Gem`)) {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerItem = attacker.item;
   }
 
@@ -746,16 +750,17 @@ export function calculateBPModsBWXY(
   }
 
   if (hasAteAbilityTypeChange) {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (
     (attacker.hasAbility('Mega Launcher') && move.flags.pulse) ||
-    (attacker.hasAbility('Strong Jaw') && move.flags.bite)
+    (attacker.hasAbility('Strong Jaw') && move.flags.bite) ||
+    (attacker.hasAbility('Sharpness') && move.flags.slicing)
   ) {
     bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
   } else if (attacker.hasAbility('Tough Claws') && move.flags.contact) {
-    bpMods.push(5325);
+    bpMods.push(6144);
     desc.attackerAbility = attacker.ability;
   }
 
@@ -959,6 +964,10 @@ export function calculateDefenseBWXY(
 
   // unlike all other defense modifiers, Sandstorm SpD boost gets applied directly
   if (field.hasWeather('Sand') && defender.hasType('Rock') && !hitsPhysical) {
+    defense = pokeRound((defense * 3) / 2);
+    desc.weather = field.weather;
+  }
+  if (field.hasWeather('Snow', 'Hail') && defender.hasType('Ice') && hitsPhysical) {
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }

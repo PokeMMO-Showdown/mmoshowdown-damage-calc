@@ -1914,6 +1914,11 @@ $(document).ready(function () {
 	var _fvso = getFirstValidSetOption();
 	if (_fvso && _fvso.id) { $(".set-selector").val(_fvso.id); $(".set-selector").change(); }
 	$(".terrain-trigger").bind("change keyup", getTerrainEffects);
+	// Initialize weather tracking for starting Pokemon
+	$('.poke-info').each(function(i) {
+		var ability = $(this).find('select.ability').val();
+		if (ability) autosetWeather(ability, i);
+	});
 });
 
 /* Click-to-copy function */
