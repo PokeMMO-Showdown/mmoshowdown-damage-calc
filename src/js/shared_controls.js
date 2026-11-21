@@ -1629,9 +1629,9 @@ function getSetOptions(sets) {
 				} else {
 					setOptions.push({
 						pokemon: pokeName,
-						set: 'Randoms Set',
-						text: pokeName + " (Randoms)",
-						id: pokeName + " (Randoms)"
+						set: 'Random Battles Set',
+						text: pokeName + " (Random Battles)",
+						id: pokeName + " (Random Battles)"
 					});
 				}
 			}
