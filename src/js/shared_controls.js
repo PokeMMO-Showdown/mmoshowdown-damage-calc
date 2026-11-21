@@ -370,6 +370,10 @@ function autosetWeather(ability, i) {
 			$("#snow").prop("checked", true);
 		}
 		break;
+	case "Hail Warning":
+		lastAutoWeather[i] = "Hail";
+		$("#hail").prop("checked", true);
+		break;
 	case "Desolate Land":
 		lastAutoWeather[i] = "Harsh Sunshine";
 		$("#harsh-sunshine").prop("checked", true);
@@ -464,7 +468,7 @@ $(".move-selector").change(function () {
 		var actual = calc.Stats.getHiddenPower(GENERATION, pokemon.ivs);
 		if (actual.type !== m[1]) {
 			var hpIVs = calc.Stats.getHiddenPowerIVs(GENERATION, m[1]);
-			if (hpIVs && gen < 7) {
+			if (hpIVs && gen < 7 && gen !== 5) {
 				for (var i = 0; i < LEGACY_STATS[gen].length; i++) {
 					var legacyStat = LEGACY_STATS[gen][i];
 					var stat = legacyStatToStat(legacyStat);
@@ -978,6 +982,8 @@ $(".forme").change(function () {
 });
 
 function correctHiddenPower(pokemon) {
+	// PokeMMO: Hidden Power type is not tied to IVs
+	if (gen === 5) return pokemon;
 	// After Gen 7 bottlecaps means you can have a HP without perfect IVs
 	// Level 100 is elided from sets so if its undefined its level 100
 	if (gen >= 7 && (!pokemon.level || pokemon.level >= 100)) return pokemon;
