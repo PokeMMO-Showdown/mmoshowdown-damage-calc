@@ -195,16 +195,24 @@ function calculateAllMoves(gen, p1, p1field, p2, p2field) {
 	return results;
 }
 
+// clean URLs: drop ?mode= and the .html for PokeMMO Officials / Random Battles
+function cleanQuery(params) {
+	var p = new URLSearchParams(params.toString());
+	p['delete']('mode');
+	var s = p.toString();
+	return s ? '?' + s : '';
+}
+
 $(".mode").change(function () {
 	var params = new URLSearchParams(window.location.search);
 	params.set('mode', $(this).attr("id"));
 	var mode = params.get('mode');
 	if (mode === 'randoms') {
-		window.location.replace('randoms.html?' + params);
+		window.location.replace('/randoms' + cleanQuery(params));
 	} else if (mode === 'champions') {
 		window.location.replace('champions.html?' + params);
 	} else if (mode === 'one-vs-one') {
-		window.location.replace('index.html?' + params);
+		window.location.replace('/' + cleanQuery(params));
 	} else if (mode === "oms") {
 		window.location.replace('oms.html');
 	} else {
@@ -225,11 +233,11 @@ $(document).ready(function () {
 		} else {
 			if ($('#randoms').prop('checked')) {
 				if (m === 'one-vs-one') {
-					window.location.replace('index.html?' + params);
+					window.location.replace('/' + cleanQuery(params));
 				}
 			} else {
 				if (m === 'randoms') {
-					window.location.replace('randoms.html?' + params);
+					window.location.replace('/randoms' + cleanQuery(params));
 				}
 			}
 		}
