@@ -182,6 +182,7 @@ const BW = DPP.concat([
   'Sharpness',
   'Competitive',
   'Neutralizing Gas',
+  'Hail Warning',
 ]);
 
 const XY = BW.concat([

@@ -127,7 +127,7 @@ export function calculateBWXY(
       field.hasWeather('Sun', 'Harsh Sunshine') ? 'Fire'
       : field.hasWeather('Rain', 'Heavy Rain') ? 'Water'
       : field.hasWeather('Sand') ? 'Rock'
-      : field.hasWeather('Hail') ? 'Ice'
+      : field.hasWeather('Hail', 'Snow') ? 'Ice'
       : 'Normal';
     desc.weather = field.weather;
     desc.moveType = move.type;
@@ -738,7 +738,7 @@ export function calculateBPModsBWXY(
   } else if (gen.num > 5 && move.named('Knock Off') && !resistedKnockOffDamage) {
     bpMods.push(6144);
     desc.moveBP = basePower * 1.5;
-  } else if (move.named('Solar Beam') && field.hasWeather('Rain', 'Heavy Rain', 'Sand', 'Hail')) {
+  } else if (move.named('Solar Beam') && field.hasWeather('Rain', 'Heavy Rain', 'Sand', 'Hail', 'Snow')) {
     bpMods.push(2048);
     desc.moveBP = basePower / 2;
     desc.weather = field.weather;
@@ -967,7 +967,7 @@ export function calculateDefenseBWXY(
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }
-  if (field.hasWeather('Snow', 'Hail') && defender.hasType('Ice') && hitsPhysical) {
+  if (field.hasWeather('Snow') && defender.hasType('Ice') && hitsPhysical) {
     defense = pokeRound((defense * 3) / 2);
     desc.weather = field.weather;
   }
